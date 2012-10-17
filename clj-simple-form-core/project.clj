@@ -1,4 +1,4 @@
-(defproject clj-simple-form/clj-simple-form-core "0.1.0"
+(defproject clj-simple-form/clj-simple-form-core "0.1.1"
   :description "Library for generating form elements."
   :url "https://github.com/asmala/clj-simple-form"
   :license {:name "Eclipse Public License"
