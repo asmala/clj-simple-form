@@ -42,6 +42,10 @@ only the core library and load your custom HTML backend by using
   (text-field-input :name)
   (email-input :email)
 
+  ;; `clj-simple-form.fields` allows you to use the value hook backend
+  ;; with your own inputs
+  (text-field :coupon-code)
+
   ;; `clj-simple-form.helpers` includes a few utility functions for forms
   [:div.form-actions
    (cancel-button "/")
