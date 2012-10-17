@@ -1,7 +1,8 @@
 (ns clj-simple-form.input
   (:use [clj-simple-form.form-scope :only [error-for value-for]]
         [clj-simple-form.util :only [html-fn key-value-pair]])
-  (:require [clj-simple-form.i18n :as i18n]))
+  (:require [clj-simple-form.fields :as f]
+            [clj-simple-form.i18n :as i18n]))
 
 (defn input
   "Returns the input element(s) inside a labeled wrapper. Use for creating your
@@ -27,97 +28,62 @@
 (defn check-box-input
   "Returns a check box inside a labeled wrapper."
   ([field] (check-box-input field {}))
-  ([field {:keys [input-html value] :as args
-           :or {input-html {} value (value-for field)}}]
-     (input field args
-            ((html-fn :check-box) input-html field value))))
+  ([field args]
+     (input field args 
+            (f/check-box field args))))
 
 (defn check-box-group-input
   "Returns a group of checkboxes inside a labeled wrapper."
   ([field options] (check-box-group-input field options {}))
-  ([field options {:keys [value] :as args :or {value (value-for field)}}]
+  ([field options args]
      (apply input field args
-            (for [option options]
-              (let [[k v] (key-value-pair option)
-                    name (str (name field) "][")
-                    checked? (contains? value v)]
-                ((html-fn :group-check-box) name v k checked?))))))
-
-(defn drop-down
-  "Returns a drop down."
-  ([field options] (drop-down field options {}))
-  ([field options {:keys [input-html value] :as args
-                   :or {input-html {} value (value-for field)}}]
-     (let [placeholder (i18n/t :placeholders field nil)
-           options (if placeholder
-                     (cons [placeholder ""] options)
-                     options)]
-       ((html-fn :drop-down) input-html field options value))))
+            (f/check-box-group field options args))))
 
 (defn drop-down-input
   "Returns a drop down inside a labeled wrapper."
   ([field options] (drop-down-input field options {}))
   ([field options args]
-     (input field args (drop-down field options args))))
+     (input field args
+            (f/drop-down field options args))))
 
 (defn email-field-input
   "Returns an email field inside a labeled wrapper."
   ([field] (email-field-input field {}))
-  ([field {:keys [input-html value] :as args
-           :or {input-html {} value (value-for field)}}]
+  ([field args]
      (input field args
-            (let [input-html (merge {:placeholder (i18n/t :placeholders field nil)}
-                                    input-html)]
-              ((html-fn :email-field) input-html field value)))))
+            (f/email-field field args))))
 
 (defn file-upload-input
   "Returns a file upload field inside a labeled wrapper."
   ([field] (file-upload-input field {}))
-  ([field {:keys [input-html] :as args :or {input-html {}}}]
+  ([field args]
      (input field args
-            ((html-fn :file-upload) input-html field))))
+            (f/file-upload field args))))
 
 (defn password-field-input
   "Returns a password field inside a labeled wrapper."
   ([field] (password-field-input field {}))
-  ([field {:keys [input-html value] :as args
-           :or {input-html {} value (value-for field)}}]
+  ([field args]
      (input field args
-            ((html-fn :password-field) input-html field value))))
+            (f/password-field field args))))
 
 (defn radio-button-group-input
   "Returns a group of radio buttons inside a labeled wrapper."
   ([field options] (radio-button-group-input field options {}))
-  ([field options {:keys [value] :as args :or {value (value-for field)}}]
+  ([field options args]
      (apply input field args
-            (for [option options]
-              (let [[k v] (key-value-pair option)
-                    checked? (= v value)]
-                ((html-fn :group-radio-button) field v k checked?))))))
+            (f/radio-button-group field options args))))
 
 (defn text-area-input
   "Returns a text area inside a labeled wrapper."
   ([field] (text-area-input field {}))
-  ([field {:keys [input-html value] :as args
-           :or {input-html {} value (value-for field)}}]
+  ([field args]
      (input field args
-            ((html-fn :text-area) input-html field value))))
-
-(defn text-field
-  ([field] (text-field field {}))
-  ([field {:keys [input-html value]
-           :or {input-html {} value (value-for field)}}]
-     (let [input-html (merge {:placeholder (i18n/t :placeholders field nil)}
-                             input-html)]
-       ((html-fn :text-field) input-html field value))))
+            (f/text-area field args))))
 
 (defn text-field-input
   "Returns a text field inside a labeled wrapper."
   ([field] (text-field-input field {}))
   ([field args]
-     (input field args (text-field field args))))
-
-(defn hidden-field
-  ([field] (hidden-field field {}))
-  ([field {:keys [value] :or {value (value-for field)}}]
-     ((html-fn :hidden-field) field value)))
+     (input field args
+            (f/text-field field args))))
