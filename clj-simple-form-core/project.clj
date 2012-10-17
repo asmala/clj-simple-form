@@ -4,4 +4,4 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[com.taoensso/tower "0.12.1"]
-                 [org.clojure/clojure "1.4.0"]])
+                 [org.clojure/clojure "1.3.0"]])
