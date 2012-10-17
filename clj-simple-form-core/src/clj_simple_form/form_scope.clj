@@ -19,7 +19,7 @@
          error-ns# (if *error-ns*
                      (conj *error-ns* k#)
                      [k#])]
-     (->> (i18n/with-form-translation-scope ~object)
+     (->> (i18n/with-form-translation-scope ~object ~@content)
           (binding [*form-values* (or (k# *form-values*) {})
                     *error-ns* error-ns#]))))
 
@@ -33,8 +33,8 @@
   [field]
   (let [error-key (if *error-ns*
                     (conj *error-ns* field)
-                    field)
-        errors (*form-errors* error-key)]
+                    [field])
+        errors (get-in *form-errors* error-key)]
     (if (or (sequential? errors)
             (set? errors))
       (first errors)

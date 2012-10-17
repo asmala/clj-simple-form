@@ -5,4 +5,5 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[clj-simple-form/clj-simple-form-core "0.1.0"]
                  [giddyup "0.1.0"]
-                 [hiccup "1.0.1"]])
+                 [hiccup "1.0.1"]
+                 [org.clojure/clojure "1.4.0"]])

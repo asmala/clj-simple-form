@@ -6,8 +6,10 @@
 
 ;; SETUP
 
-(def values {:name "Janne Asmala" :email "example.com"})
-(def errors {:email "example is not a valid domain"})
+(def values {:name "Janne Asmala" :email "example.com"
+             :address {:street "First Street"}})
+(def errors {:email "example is not a valid domain"
+             :address {:street "doesn't sound real"}})
 
 ;; TESTS
 
@@ -16,6 +18,17 @@
     (with-form-scope :profile values errors
       (testing "i18n interoperability"
         (is (= (i18n/t :labels :email) "Email"))))))
+
+(deftest test-with-nested-form-scope
+  (testing "with-nested-form-scope"
+    (with-form-scope :profile values errors
+      (with-nested-form-scope :address
+        (testing "i18n interoperability"
+          (is (= (i18n/t :labels :street) "Street")))
+        (testing "value-for interoperability"
+          (is (= (value-for :street) (get-in values [:address :street]))))
+        (testing "error-for interoperability"
+          (is (= (error-for :street) (get-in errors [:address :street]))))))))
 
 (deftest test-value-for
   (testing "value-for"
