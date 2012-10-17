@@ -14,11 +14,18 @@ Add the following to your `project.clj`:
 [clj-simple-form "0.1.0"]
 ```
 
-This will include both the core libraries as well as a
-[Hiccup](https://github.com/weavejester/hiccup/) based HTML backend.
-
 For other options, please refer to the library
 [Clojars page](https://clojars.org/giddyup).
+
+This will include both the core libraries as well as a
+[Hiccup](https://github.com/weavejester/hiccup/) based HTML backend.
+You can also include only the core library and load your custom HTML
+backend by using `clj-simple-form.util/set-html-fns!` and adding the
+following to your `project.clj`:
+
+```clojure
+[clj-simple-form/clj-simple-form-core "0.1.0"]
+```
 
 
 ## Quick start
