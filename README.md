@@ -70,7 +70,7 @@ placeholders.
 ## Customizable HTML backends
 
 By default, `clj-simple-form` will use a backend built around
-[Hiccup](https://github.com/weavejester/hiccup/). You can, however,
+[Hiccup](https://github.com/weavejester/hiccup). You can, however,
 easily hook in another HTML generation library with
 `clj-simple-form-core`. For now, please refer to the source of
 `clj-simple-form-giddyup` for a reference implementation.
@@ -92,5 +92,3 @@ Copyright © 2012 Janne Asmala
 Distributed under the
 [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html),
 the same as Clojure.
-
-Distributed under the Eclipse Public License, the same as Clojure.
