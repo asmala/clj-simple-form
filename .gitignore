@@ -5,6 +5,7 @@ checkouts
 logs
 docs
 pom.xml
+pom.xml.asc
 *.jar
 *.class
 *.sh
