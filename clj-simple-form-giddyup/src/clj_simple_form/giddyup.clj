@@ -1,4 +1,7 @@
-(ns clj-simple-form.giddyup
+(ns ^{:doc "Scope functions for Hiccup interoperability. Requiring this
+           namespace sets the form HTML functions to the contents of
+           `giddyup.forms`."}
+  clj-simple-form.giddyup
   (:use [clj-simple-form.util :only [set-html-fns!]])
   (:require [giddyup.forms]
             [clj-simple-form.form-scope :as form-scope]
@@ -8,14 +11,26 @@
 
 (defmacro with-form-scope
   "Sets up bindings for form I18n, form values and errors, as well as Hiccup form
-  elements."
+  elements.
+
+
+  ### Example
+
+      (with-form-scope :profile {:email \"joe@example.com\"} {}
+        (email-field-input :email))"
   [object values errors & content]
   `(->> (f/with-group ~object ~@content)
         (form-scope/with-form-scope ~object ~values ~errors)))
 
 (defmacro with-nested-form-scope
   "Sets up bindings for form I18n, form values and errors, as well as Hiccup form
-  elements, using the current form scope as a basis."
+  elements, using the current form scope as a basis.
+
+  ### Example
+
+      (with-form-scope :profile {} {:address {:street \"is required\"}}
+        (with-nested-form-scope :address
+          (text-field-input :street)))"
   [object & content]
   `(->> (f/with-group ~object ~@content)
         (form-scope/with-nested-form-scope ~object)))

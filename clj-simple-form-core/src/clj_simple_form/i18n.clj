@@ -1,10 +1,16 @@
 (ns clj-simple-form.i18n
+  "Functions for translating form contents, such as labels."
   (:require [taoensso.tower :as tower]))
 
 (def ^:dynamic *translation-scope* [])
 
 (defmacro with-form-translation-scope
-  "Sets up a binding for form element translations."
+  "Sets up a binding for form element translations.
+
+  ### Example
+
+      (with-form-translation-scope :profile
+        (t :labels :email))"
   [object & content]
   `(binding [*translation-scope* (conj *translation-scope* ~(name object))]
      (list ~@content)))
@@ -13,8 +19,9 @@
   "Converts a sequence of nested field groupings into a sequence of
   dictionary namespaces.
 
-  ### Examples
-      (lookup-seq->ns-seq [\"a\" \"b\"]) ; => (\"a.b\" \"b\")"
+  ### Example
+
+      (lookup-seq->ns-seq [\"a\" \"b\"]) ;=> (\"a.b\" \"b\")"
   [lookup-seq]
   (if (empty? lookup-seq)
     nil
@@ -35,12 +42,18 @@
     (vec (map #(keyword (str "simple-form." % "." type) field) ns-seq))))
 
 (defn- root-scoped-t
+  "Returns a translation igoring the current Tower translation scope."
   [k-or-ks]
   (tower/with-scope nil
     (tower/t k-or-ks)))
 
 (defn t
-  "Returns a translation of the given type for the field."
+  "Returns a translation of the given type for the field.
+
+  ### Examples
+
+      (t :labels :email)
+      (t :placeholder :name \"First Last\")"
   ([type field]
      (root-scoped-t (scoped-keys type field)))
   ([type field default]
