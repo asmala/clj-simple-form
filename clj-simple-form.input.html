@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>clj-simple-form.input documentation</title></head><body><div id="header"><h1><a href="index.html">Clj-simple-form 0.1.3 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li><a href="clj-simple-form.fields.html"><span>clj-simple-form.fields</span></a></li><li><a href="clj-simple-form.form-scope.html"><span>clj-simple-form.form-scope</span></a></li><li><a href="clj-simple-form.helpers.html"><span>clj-simple-form.helpers</span></a></li><li><a href="clj-simple-form.i18n.html"><span>clj-simple-form.i18n</span></a></li><li class="current"><a href="clj-simple-form.input.html"><span>clj-simple-form.input</span></a></li><li><a href="clj-simple-form.util.html"><span>clj-simple-form.util</span></a></li><li><a href="clj-simple-form.giddyup.html"><span>clj-simple-form.giddyup</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="clj-simple-form.input.html#var-check-box-group-input"><span>check-box-group-input</span></a></li><li><a href="clj-simple-form.input.html#var-check-box-input"><span>check-box-input</span></a></li><li><a href="clj-simple-form.input.html#var-drop-down-input"><span>drop-down-input</span></a></li><li><a href="clj-simple-form.input.html#var-email-field-input"><span>email-field-input</span></a></li><li><a href="clj-simple-form.input.html#var-file-upload-input"><span>file-upload-input</span></a></li><li><a href="clj-simple-form.input.html#var-input"><span>input</span></a></li><li><a href="clj-simple-form.input.html#var-password-field-input"><span>password-field-input</span></a></li><li><a href="clj-simple-form.input.html#var-radio-button-group-input"><span>radio-button-group-input</span></a></li><li><a href="clj-simple-form.input.html#var-text-area-input"><span>text-area-input</span></a></li><li><a href="clj-simple-form.input.html#var-text-field-input"><span>text-field-input</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>clj-simple-form.input documentation</h2><pre class="doc">Functions for generating input components with labels and input elements.
+
+### Options for inputs
+
+* `:error`: Error message for the field. Defaults to error for field in
+  current scope..
+* `:hint`: Hint for the field. Defaults to nil.
+* `:input-html`: HTML attributes for the input element. Defaults to `{}`.
+* `:label`: Label text. Defaults to translation.
+* `:label-html`: HTML attributes for the label element. Defaults to `{}`.
+* `:value`: Value for the field. Defaults to value for field in current scope.
+* `:wrapper-html`: HTML attributes for the wrapper element. Defaults to `{}`.</pre><div class="public" id="var-check-box-group-input"><h3>check-box-group-input</h3><div class="usage"><code>(check-box-group-input field options)</code><code>(check-box-group-input field options args)</code></div><pre class="doc">Returns a group of checkboxes inside a labeled wrapper.
+
+### Example
+
+    (check-box-group-input :hobbies [[&quot;webdev&quot; &quot;Web Development&quot;]
+                                     [&quot;spelunking&quot; &quot;Spelunking&quot;]])</pre></div><div class="public" id="var-check-box-input"><h3>check-box-input</h3><div class="usage"><code>(check-box-input field)</code><code>(check-box-input field args)</code></div><pre class="doc">Returns a check box inside a labeled wrapper.
+
+### Example
+
+    (check-box-input :privacy-policy {:error &quot;Must be accepted&quot;})</pre></div><div class="public" id="var-drop-down-input"><h3>drop-down-input</h3><div class="usage"><code>(drop-down-input field options)</code><code>(drop-down-input field options args)</code></div><pre class="doc">Returns a drop down inside a labeled wrapper.
+
+### Example
+
+    (drop-down-input :language [&quot;Finnish&quot; &quot;English&quot;]
+                     {:value &quot;Finnish&quot;})</pre></div><div class="public" id="var-email-field-input"><h3>email-field-input</h3><div class="usage"><code>(email-field-input field)</code><code>(email-field-input field args)</code></div><pre class="doc">Returns an email field inside a labeled wrapper.
+
+### Example
+
+    (email-field-input :email {:label &quot;Username&quot;})</pre></div><div class="public" id="var-file-upload-input"><h3>file-upload-input</h3><div class="usage"><code>(file-upload-input field)</code><code>(file-upload-input field args)</code></div><pre class="doc">Returns a file upload field inside a labeled wrapper.
+
+### Example
+
+    (file-upload-input :avatar {:input-html {:data-max-size &quot;2M&quot;}})</pre></div><div class="public" id="var-input"><h3>input</h3><div class="usage"><code>(input field)</code><code>(input field input-or-args &amp; inputs)</code></div><pre class="doc">Returns the input element(s) inside a labeled wrapper. Use for creating your
+own input functions.
+
+### Example
+
+    (defn uneditable-input [field {:keys [value] :as args}]
+      (input field args
+             (str &quot;&lt;span class=\&quot;uneditable-input\&quot;&gt;&quot;
+                  value &quot;&lt;/span&gt;&quot;)))</pre></div><div class="public" id="var-password-field-input"><h3>password-field-input</h3><div class="usage"><code>(password-field-input field)</code><code>(password-field-input field args)</code></div><pre class="doc">Returns a password field inside a labeled wrapper.
+
+### Example
+
+    (password-field-input :password {:input-html {:class &quot;password&quot;}})</pre></div><div class="public" id="var-radio-button-group-input"><h3>radio-button-group-input</h3><div class="usage"><code>(radio-button-group-input field options)</code><code>(radio-button-group-input field options args)</code></div><pre class="doc">Returns a group of radio buttons inside a labeled wrapper.
+
+### Example
+
+    (radio-button-group-input :language [&quot;Finnish&quot; &quot;English&quot;])</pre></div><div class="public" id="var-text-area-input"><h3>text-area-input</h3><div class="usage"><code>(text-area-input field)</code><code>(text-area-input field args)</code></div><pre class="doc">Returns a text area inside a labeled wrapper.
+
+### Example
+
+    (text-area-input :bio {:hint &quot;Tell people about your background.&quot;})</pre></div><div class="public" id="var-text-field-input"><h3>text-field-input</h3><div class="usage"><code>(text-field-input field)</code><code>(text-field-input field args)</code></div><pre class="doc">Returns a text field inside a labeled wrapper.
+
+### Example
+
+    (text-field-input :name {:input-html {:placeholder &quot;First :Last&quot;}})</pre></div></div></body></html>

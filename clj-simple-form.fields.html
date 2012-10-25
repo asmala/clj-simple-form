@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head><link href="css/default.css" rel="stylesheet" type="text/css"><script src="js/jquery.min.js" type="text/javascript"></script><script src="js/page_effects.js" type="text/javascript"></script><title>clj-simple-form.fields documentation</title></head><body><div id="header"><h1><a href="index.html">Clj-simple-form 0.1.3 API documentation</a></h1></div><div class="sidebar" id="namespaces"><h3><span>Namespaces</span></h3><ul><li class="current"><a href="clj-simple-form.fields.html"><span>clj-simple-form.fields</span></a></li><li><a href="clj-simple-form.form-scope.html"><span>clj-simple-form.form-scope</span></a></li><li><a href="clj-simple-form.helpers.html"><span>clj-simple-form.helpers</span></a></li><li><a href="clj-simple-form.i18n.html"><span>clj-simple-form.i18n</span></a></li><li><a href="clj-simple-form.input.html"><span>clj-simple-form.input</span></a></li><li><a href="clj-simple-form.util.html"><span>clj-simple-form.util</span></a></li><li><a href="clj-simple-form.giddyup.html"><span>clj-simple-form.giddyup</span></a></li></ul></div><div class="sidebar" id="vars"><h3>Public Vars</h3><ul><li><a href="clj-simple-form.fields.html#var-check-box"><span>check-box</span></a></li><li><a href="clj-simple-form.fields.html#var-check-box-group"><span>check-box-group</span></a></li><li><a href="clj-simple-form.fields.html#var-drop-down"><span>drop-down</span></a></li><li><a href="clj-simple-form.fields.html#var-email-field"><span>email-field</span></a></li><li><a href="clj-simple-form.fields.html#var-file-upload"><span>file-upload</span></a></li><li><a href="clj-simple-form.fields.html#var-hidden-field"><span>hidden-field</span></a></li><li><a href="clj-simple-form.fields.html#var-password-field"><span>password-field</span></a></li><li><a href="clj-simple-form.fields.html#var-radio-button-group"><span>radio-button-group</span></a></li><li><a href="clj-simple-form.fields.html#var-text-area"><span>text-area</span></a></li><li><a href="clj-simple-form.fields.html#var-text-field"><span>text-field</span></a></li></ul></div><div class="namespace-docs" id="content"><h2>clj-simple-form.fields documentation</h2><pre class="doc">Functions for creating pre-populated form fields.
+
+### Options for fields
+
+* `:input-html`: HTML attributes for the input element. Defaults to `{}`.
+* `:value`: Value for the field. Defaults to value for field in current scope.</pre><div class="public" id="var-check-box"><h3>check-box</h3><div class="usage"><code>(check-box field)</code><code>(check-box field {:keys [input-html value], :as args, :or {input-html {}, value (value-for field)}})</code></div><pre class="doc">Returns a check box element.
+
+### Example
+
+    (check-box :remember-me)</pre></div><div class="public" id="var-check-box-group"><h3>check-box-group</h3><div class="usage"><code>(check-box-group field options)</code><code>(check-box-group field options {:keys [value], :as args, :or {value (value-for field)}})</code></div><pre class="doc">Returns a group of checkbox elements.
+
+### Example
+
+    (check-box-group :hobbies [[&quot;webdev&quot; &quot;Web Development&quot;]
+                               [&quot;spelunking&quot; &quot;Spelunking&quot;]])</pre></div><div class="public" id="var-drop-down"><h3>drop-down</h3><div class="usage"><code>(drop-down field options)</code><code>(drop-down field options {:keys [input-html value], :as args, :or {input-html {}, value (value-for field)}})</code></div><pre class="doc">Returns a drop down.
+
+### Example
+
+    (drop-down :language [&quot;Finnish&quot; &quot;English&quot;])</pre></div><div class="public" id="var-email-field"><h3>email-field</h3><div class="usage"><code>(email-field field)</code><code>(email-field field {:keys [input-html value], :as args, :or {input-html {}, value (value-for field)}})</code></div><pre class="doc">Returns an email field element.
+
+### Example
+
+    (email-field :email {:value &quot;joe@example.com&quot;})</pre></div><div class="public" id="var-file-upload"><h3>file-upload</h3><div class="usage"><code>(file-upload field)</code><code>(file-upload field {:keys [input-html], :as args, :or {input-html {}}})</code></div><pre class="doc">Returns a file upload element.
+
+### Example
+
+    (file-upload :avatar)</pre></div><div class="public" id="var-hidden-field"><h3>hidden-field</h3><div class="usage"><code>(hidden-field field)</code><code>(hidden-field field {:keys [value], :or {value (value-for field)}})</code></div><pre class="doc">Returns a hidden field element.
+
+### Example
+
+    (hidden-field :redirect-url {:value &quot;http://www.example.com/&quot;})</pre></div><div class="public" id="var-password-field"><h3>password-field</h3><div class="usage"><code>(password-field field)</code><code>(password-field field {:keys [input-html value], :as args, :or {input-html {}, value (value-for field)}})</code></div><pre class="doc">Returns a password field element.
+
+### Example
+
+    (password-field :password)</pre></div><div class="public" id="var-radio-button-group"><h3>radio-button-group</h3><div class="usage"><code>(radio-button-group field options)</code><code>(radio-button-group field options {:keys [value], :as args, :or {value (value-for field)}})</code></div><pre class="doc">Returns a group of radio button elements.
+
+### Example
+
+    (radio-button-group :language [&quot;Finnish&quot; &quot;English&quot;]
+                        {:value &quot;Finnish&quot;})</pre></div><div class="public" id="var-text-area"><h3>text-area</h3><div class="usage"><code>(text-area field)</code><code>(text-area field {:keys [input-html value], :as args, :or {input-html {}, value (value-for field)}})</code></div><pre class="doc">Returns a text area element.
+
+### Example
+
+    (text-area :bio {:value &quot;It was the summer of '69.&quot;})</pre></div><div class="public" id="var-text-field"><h3>text-field</h3><div class="usage"><code>(text-field field)</code><code>(text-field field {:keys [input-html value], :or {input-html {}, value (value-for field)}})</code></div><pre class="doc">Returns a text field element.
+
+### Example
+
+    (text-field :name {:input-html {:class &quot;name&quot;}})</pre></div></div></body></html>
