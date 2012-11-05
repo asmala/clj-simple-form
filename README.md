@@ -11,7 +11,7 @@ series of functions for quickly generating forms.
 Add the following to your `project.clj`:
 
 ```clojure
-[clj-simple-form "0.1.3"]
+[clj-simple-form "0.1.4"]
 ```
 
 For other options, please refer to the library
@@ -25,7 +25,7 @@ only the core library and load your custom HTML backend by using
 `project.clj`:
 
 ```clojure
-[clj-simple-form/clj-simple-form-core "0.1.3"]
+[clj-simple-form/clj-simple-form-core "0.1.4"]
 ```
 
 
