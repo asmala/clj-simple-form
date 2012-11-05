@@ -1,7 +1,6 @@
-(ns ^{:doc "Scope functions for Hiccup interoperability. Requiring this
-           namespace sets the form HTML functions to the contents of
-           `giddyup.forms`."}
-  clj-simple-form.giddyup
+(ns clj-simple-form.giddyup
+  "Scope functions for Hiccup interoperability. Requiring this namespace sets
+  the form HTML functions to the contents of `giddyup.forms`."
   (:use [clj-simple-form.util :only [set-html-fns!]])
   (:require [giddyup.forms]
             [clj-simple-form.form-scope :as form-scope]
@@ -12,7 +11,6 @@
 (defmacro with-form-scope
   "Sets up bindings for form I18n, form values and errors, as well as Hiccup form
   elements.
-
 
   ### Example
 
